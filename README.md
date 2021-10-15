@@ -10,11 +10,11 @@ Ayrat Gimranov
 
 ## Collaborators
 
-Charlie
+Charlie Fadness, Heather Bisgaard, Alex White(instructor)
 
 ## Version
 
-1.0.0
+1.1.0
 
 ## Resources
 
