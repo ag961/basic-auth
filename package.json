@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "init": "sequelize db:create",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development node index.js",
     "watch": "nodemon index.js",
     "init:config": "sequelize init:config",
     "db:create": "sequelize db:create",
-    "test-watch": "NODE_ENV=test jest --watchAll",
-    "test": "NODE_ENV=test jest"
+    "test-watch": "NODE_ENV=test jest --watchAll --verbose --coverage",
+    "test": "NODE_ENV=test jest --verbose --coverage",
+    "lint": "eslint **/*.js"
   },
   "repository": {
     "type": "git",
