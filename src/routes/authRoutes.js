@@ -3,9 +3,13 @@
 const express = require('express');
 const router = express.Router();
 const basicAuth = require('../auth/basicAuth');
-const bcrypt = require('bcrypt');
 
-const { Users } = require('../models/index')
+const { Users } = require('../models/index');
+
+router.get('/list', async (req, res) => {
+  const response = await Users.findAll();
+  res.status(200).json(response);
+})
 
 router.post('/signin', basicAuth, async (req, res) => {
   let user = req.body.user;
@@ -14,7 +18,6 @@ router.post('/signin', basicAuth, async (req, res) => {
 
 router.post('/signup', async (req, res) => {
   try {
-    req.body.password = await bcrypt.hash(req.body.password, 10);
     const record = await Users.create(req.body);
     res.status(200).json(record);
   }

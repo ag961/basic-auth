@@ -3,20 +3,23 @@
 const express = require('express');
 const app = express();
 const authRoutes = require('./routes/authRoutes');
-/* const bcrypt = require('bcrypt');
-const base64 = require('base-64'); */
-/* const { Sequelize, DataTypes } = require('sequelize'); */
-
-/* const basicAuth = require('./auth/basicAuth'); */
+const notFoundHandler = require('./error-handlers/404');
+const errorHandler = require('./error-handlers/500');
 
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(authRoutes);
 
+
 app.get('/', (req, res) => {
   res.status(200).send('Hello world');
 })
+
+
+app.use('*', notFoundHandler);
+app.use(errorHandler);
+
 
 const start = (port) => {
   if (!port) {
